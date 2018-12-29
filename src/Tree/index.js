@@ -412,7 +412,7 @@ export default class Tree extends React.Component {
     const { nodes, links } = this.generateTree();
     const { rd3tSvgClassName, rd3tGClassName } = this.state;
     const {
-      nodeSvgShape,
+      commonNodeElement,
       nodeLabelComponent,
       orientation,
       pathFunc,
@@ -452,7 +452,7 @@ export default class Tree extends React.Component {
             {nodes.map(nodeData => (
               <Node
                 key={nodeData.id}
-                nodeSvgShape={{ ...nodeSvgShape, ...nodeData.nodeSvgShape }}
+                nodeElement={nodeData.nodeElement ? nodeData.nodeElement : commonNodeElement}
                 nodeLabelComponent={nodeLabelComponent}
                 nodeSize={nodeSize}
                 orientation={orientation}
@@ -477,9 +477,9 @@ export default class Tree extends React.Component {
 }
 
 Tree.defaultProps = {
-  nodeSvgShape: {
+  commonNodeElement: {
     shape: 'circle',
-    shapeProps: {
+    baseProps: {
       r: 10,
     },
   },
@@ -514,9 +514,11 @@ Tree.defaultProps = {
 
 Tree.propTypes = {
   data: T.oneOfType([T.array, T.object]).isRequired,
-  nodeSvgShape: T.shape({
+  commonNodeElement: T.shape({
     shape: T.string,
-    shapeProps: T.object,
+    baseProps: T.object,
+    branchNodeProps: T.object,
+    leafNodeProps: T.object,
   }),
   nodeLabelComponent: T.object,
   onClick: T.func,
