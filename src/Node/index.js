@@ -74,13 +74,23 @@ export default class Node extends React.Component {
   };
 
   renderNodeLabelElement = () => {
-    const { allowForeignObjects, nodeLabelComponent, nodeData, nodeSize } = this.props;
+    const {
+      allowForeignObjects,
+      nodeLabelComponent,
+      nodeData,
+      nodeSize,
+      nodeLabelProps,
+    } = this.props;
 
     return allowForeignObjects && nodeLabelComponent ? (
       <ForeignObjectElement nodeData={nodeData} nodeSize={nodeSize} {...nodeLabelComponent} />
     ) : (
       // FIXME:
-      <SvgTextElement {...this.props} nodeStyle={{}} />
+      <SvgTextElement
+        nameData={nodeData.name}
+        attributesData={nodeData.attributes}
+        {...nodeLabelProps}
+      />
     );
   };
 
@@ -126,7 +136,6 @@ export default class Node extends React.Component {
 
 Node.defaultProps = {
   nodeLabelComponent: null,
-  attributes: undefined,
   styles: {
     node: {
       circle: {},
@@ -144,6 +153,7 @@ Node.defaultProps = {
 Node.propTypes = {
   nodeData: T.object.isRequired,
   nodeElement: T.object.isRequired,
+  nodeLabelProps: T.object.isRequired,
   nodeLabelComponent: T.object,
   nodeSize: T.object.isRequired,
   orientation: T.oneOf(['horizontal', 'vertical']).isRequired,
@@ -151,8 +161,6 @@ Node.propTypes = {
   onClick: T.func.isRequired,
   onMouseOver: T.func.isRequired,
   onMouseOut: T.func.isRequired,
-  name: T.string.isRequired,
-  attributes: T.object,
   textLayout: T.object.isRequired,
   subscriptions: T.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   allowForeignObjects: T.bool.isRequired,
