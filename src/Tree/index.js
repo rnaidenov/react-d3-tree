@@ -210,11 +210,6 @@ export default class Tree extends React.Component {
    */
   collapseNode(node) {
     node._collapsed = true;
-    if (node._children && node._children.length > 0) {
-      node._children.forEach(child => {
-        this.collapseNode(child);
-      });
-    }
   }
 
   /**
