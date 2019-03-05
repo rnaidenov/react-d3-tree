@@ -83,7 +83,7 @@ export default class Tree extends React.Component {
    */
   setInitialTreeDepth(nodeSet, initialDepth) {
     nodeSet.forEach(n => {
-      n._collapsed = n.depth >= initialDepth;
+      n._collapsed = n.depth <= initialDepth;
     });
   }
 
