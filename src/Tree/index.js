@@ -210,7 +210,6 @@ export default class Tree extends React.Component {
    */
   collapseNode(node) {
     node._collapsed = true;
-    console.log('sese');
   }
 
   /**

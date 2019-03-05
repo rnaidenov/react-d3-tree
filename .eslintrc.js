@@ -26,6 +26,7 @@ module.exports = {
       "error",
       "as-needed"
     ],
+    "linebreak-style": ["error", "windows"],
     "arrow-body-style": [
       2,
       "as-needed"

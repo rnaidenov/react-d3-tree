@@ -7,7 +7,7 @@
   "scripts": {
     "clean:lib": "rimraf lib/*",
     "precommit": "lint-staged",
-    "build": "yarn clean:lib && webpack --progress --colors --env build",
+    "build": "webpack --progress --colors --env build",
     "dev": "yarn clean:lib && webpack --progress --colors --watch --env dev",
     "lint": "eslint src/**/*.js",
     "test": "yarn lint && jest --coverage --verbose",
@@ -91,7 +91,7 @@
     "eslint-loader": "2.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react": "^7.12.4",
     "husky": "^1.2.0",
     "jest": "^22.1.3",
     "jsdoc-to-markdown": "^3.0.0",
